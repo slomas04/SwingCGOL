@@ -4,8 +4,8 @@ public class CGOLBoard {
     private final int WIDTH;
     private final int HEIGHT;
 
-    private Random r = new Random();
-    private GOLCell[][] GOLGrid;
+    private final Random r = new Random();
+    private final GOLCell[][] GOLGrid;
 
     public CGOLBoard(int w, int h){
         WIDTH = w;

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SwingCGOL:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SwingCGOL_jar</output-path>
+    <root id="archive" name="SwingCGOL.jar">
+      <element id="module-output" name="SwingCGOL" />
+    </root>
+  </artifact>
+</component>
