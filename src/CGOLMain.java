@@ -4,7 +4,7 @@ public class CGOLMain {
         if(args.length != 3){
             w = 640;
             h = 480;
-            s = 1;
+            s = 2;
         } else {
             w = Integer.parseInt(args[0]);
             h = Integer.parseInt(args[1]);

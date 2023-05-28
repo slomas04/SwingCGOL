@@ -15,7 +15,8 @@ public class CGOLController {
             for (int hi = 0; hi < HEIGHT; hi++){
                 for (int wi = 0; wi < WIDTH; wi++){
                     Color determined = (board.isAlive(hi, wi)) ? Color.white : Color.black;
-                    pGrid.fillArea(determined, wi*2, hi*2, wi*2 + SCALE, hi*2 + SCALE, false);
+                    pGrid.fillArea(determined, wi*SCALE, hi*SCALE,
+                            wi*SCALE + SCALE, hi*SCALE + SCALE, false);
                 }
             }
         } else {
@@ -42,6 +43,7 @@ public class CGOLController {
         board = new CGOLBoard(WIDTH, HEIGHT);
 
         pGrid = new PixelGrid(w, h, "Conway's Game of Life");
+        pGrid.fillArea(Color.black, 0,0, WIDTH, HEIGHT, true);
         renderImage();
         pGrid.toggleVisible();
     }
