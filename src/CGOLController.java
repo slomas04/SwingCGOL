@@ -5,14 +5,25 @@ public class CGOLController {
     private final int WIDTH;
     private final int HEIGHT;
 
+    private final int SCALE;
+
     private CGOLBoard board;
     private final PixelGrid pGrid;
 
     private void renderImage(){
-        for (int hi = 0; hi < HEIGHT; hi++){
-            for (int wi = 0; wi < WIDTH; wi++){
-                Color determined = (board.isAlive(hi, wi)) ? Color.white : Color.black;
-                pGrid.setColour(determined, WIDTH - wi - 1, HEIGHT - hi - 1);
+        if (SCALE != 1){
+            for (int hi = 0; hi < HEIGHT; hi++){
+                for (int wi = 0; wi < WIDTH; wi++){
+                    Color determined = (board.isAlive(hi, wi)) ? Color.white : Color.black;
+                    pGrid.fillArea(determined, wi*2, hi*2, wi*2 + SCALE, hi*2 + SCALE, false);
+                }
+            }
+        } else {
+            for (int hi = 0; hi < HEIGHT; hi++){
+                for (int wi = 0; wi < WIDTH; wi++){
+                    Color determined = (board.isAlive(hi, wi)) ? Color.white : Color.black;
+                    pGrid.setColour(determined, WIDTH - wi - 1, HEIGHT - hi - 1);
+                }
             }
         }
         pGrid.repaint();
@@ -23,13 +34,14 @@ public class CGOLController {
         renderImage();
     }
 
-    public CGOLController(int w, int h){
-        WIDTH = w;
-        HEIGHT = h;
+    public CGOLController(int w, int h, int scale){
+        WIDTH = w/scale;
+        HEIGHT = h/scale;
+        SCALE = scale;
 
-        board = new CGOLBoard(w, h);
+        board = new CGOLBoard(WIDTH, HEIGHT);
 
-        pGrid = new PixelGrid(WIDTH, HEIGHT, "Conway's Game of Life");
+        pGrid = new PixelGrid(w, h, "Conway's Game of Life");
         renderImage();
         pGrid.toggleVisible();
     }
